@@ -1,0 +1,75 @@
+const app = angular.module('inverted_index', []);
+app.controller('myController', ['$scope', ($scope) => {
+    const invertedInverted = new Index;
+    $scope.file = {};
+    $scope.showUploaded = false;
+    $scope.fileName = [];
+    $scope.document = {};
+    $fileContent = {};
+    $scope.count = [];
+    $scope.indexedFile = [];
+    const fileContent = {};
+
+
+//Element By id's
+    const file = document.getElementById('files');
+    const selectFile = document.getElementById('selectFiles');
+    const indexBtn = document.getElementById('index');
+
+//Event Listeners
+    file.addEventListener('change', () => {
+        $scope.uploadFile(file);
+    });
+    file.addEventListener('click', () =>{
+        const fileName = selectFile.value;
+        $scope.getIndex(fileName);
+    });
+
+
+$scope.uploadFile = (file) =>{
+    file = file.files;
+    for(let i=0; i < file.length; i += 1){
+        const fileExtension = file[i].name.split('.').pop();
+        if(fileExtension !== 'json'){
+            return toastr.error('Please upload a valid file', 'Error');
+        }
+        if($scope.fileName.includes(file[i].name)){
+            return toastr.error(`${file[i].name} has already been uploaded`, 'Error');
+        }
+        $scope.document = $scope.fileName.push(file[i].name);
+        $scope.showUploaded = true;
+         $scope.$apply($scope.document);
+           toastr.success(`${file[i].name} uploaded successfully`, 'Success');
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            $fileContent[file[i].name] = reader.result;
+            $scope.$apply();
+        };
+         reader.readAsText(file[i]);
+    }
+}
+
+$scope.getIndex = (fileName) => {
+    $scope.count = range(fileContent[document.getElementById('selectFiles').value]);
+    console.log('hi u there', $scope.indexGet);
+    Object.keys(fileContent).forEach((key, index) => {
+      $scope.file = (fileContent[key]);
+    });
+    invertedIndex.createIndex(fileName, $scope.file);
+    $scope.indexGet = invertedIndex.getIndex(fileName);
+    $scope.indexedFile.push(fileName);
+    $scope.get = invertedIndex.createIndex(fileName, $scope.file);
+    
+   
+}
+}]);
+function range (file) { 
+  file = JSON.parse(file);
+  const range = [];
+  for (let i = 0; i < file.length; i++) {
+    range.push(i);
+  }
+  return range;
+}
+
