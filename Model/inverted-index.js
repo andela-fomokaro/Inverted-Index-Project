@@ -138,3 +138,5 @@ class Index {
     return searchResult;
   }
 }
+
+module.exports = Index;

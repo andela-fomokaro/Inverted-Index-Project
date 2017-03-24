@@ -52,28 +52,31 @@ app.controller('myController', ['$scope', ($scope) => {
     const fileName = document.getElementById('selectFile').value;
     let fileContent = $scope.fileContent[fileName];
 
+    if (fileName.length === 0) {
+      return toastr.error('Please upload a file before you create index', 'Error');
+    } else {
+      try {
+        invertedIndex.createIndex(fileName, fileContent);
+      } catch (err) {
+        toastr.error(err.message);
+      }
 
-    try {
-      invertedIndex.createIndex(fileName, fileContent);
-    } catch (err) {
-      toastr.error(err.message);
+      const index = invertedIndex.getIndex(fileName);
+      $scope.indices[fileName] = index;
+
+      fileContent = JSON.parse(fileContent);
+      $scope.fileContent[fileName] = fileContent;
+      const length = fileContent.length;
+      const temp = [];
+      for (let i = 0; i < length; i++) {
+        temp.push(i);
+      }
+
+      $scope.numberOfDocuments[fileName] = temp;
+      $scope.filesToSearch.push(fileName);
+      $scope.showTable = true;
+      console.log($scope.indices);
     }
-
-    const index = invertedIndex.getIndex(fileName);
-    $scope.indices[fileName] = index;
-
-    fileContent = JSON.parse(fileContent);
-    $scope.fileContent[fileName] = fileContent;
-    const length = fileContent.length;
-    const temp = [];
-    for (let i = 0; i < length; i++) {
-      temp.push(i);
-    }
-
-    $scope.numberOfDocuments[fileName] = temp;
-    $scope.filesToSearch.push(fileName);
-    $scope.showTable = true;
-    console.log($scope.indices);
   };
 
 
