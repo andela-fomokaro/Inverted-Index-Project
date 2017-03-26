@@ -1,20 +1,21 @@
 {
   "name": "project",
   "version": "1.0.0",
-  "description": "",
+  "description": "[![Code Climate](https://codeclimate.com/github/andela-fomokaro/Inverted-Index-Project/badges/gpa.svg)](https://codeclimate.com/github/andela-fomokaro/Inverted-Index-Project)",
   "main": "gulpfile.js",
   "dependencies": {
     "eslint": "^3.18.0",
     "express": "^4.15.2",
-    "i": "^0.3.5",
-    "jasmine": "^2.5.3",
-    "pump": "^1.0.2"
+    "i": "^0.3.5"
   },
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "test": "istanbul cover jasmine spec/index-spec.js && npm run coveralls"
   },
   "devDependencies": {
     "browser-sync": "^2.18.8",
+    "coveralls": "^2.12.0",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-config-airbnb-base": "^11.1.1",
@@ -23,8 +24,17 @@
     "eslint-plugin-react": "^6.7.1",
     "gulp-clean-css": "^3.0.3",
     "gulp-uglify": "^2.1.0",
-    "jasmine": "^2.5.3"
+    "jasmine": "^2.5.3",
+    "pump": "^1.0.2"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Omokaro Faith",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-fomokaro/Inverted-Index-Project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andela-fomokaro/Inverted-Index-Project/issues"
+  },
+  "homepage": "https://github.com/andela-fomokaro/Inverted-Index-Project#readme"
 }

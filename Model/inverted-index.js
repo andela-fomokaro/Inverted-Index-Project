@@ -27,10 +27,8 @@ class Index {
       status: true,
       msg: 'Valid File',
     };
-    // console.log('my type', typeof file);
     try {
       if (typeof file !== 'object' || file.length < 1) {
-        // console.log('You see I showed');
         check = {
           status: false,
           msg: 'File is empty please upload a new file',
@@ -57,13 +55,10 @@ class Index {
 
   createIndex(fileName, jsonObject) {
     const newIndex = {};
-
-    // this.isValid(fileName);
     this.validateFile(jsonObject);
 
     jsonObject.forEach((object, position) => {
       const longSentence = `${object.title} ${object.text}`;
-      // console.log('I am long', longSentence);
       const tokenized = this.tokenize(longSentence);
       const wordArray = tokenized.split(' ');
 
