@@ -2,24 +2,17 @@ class Index {
   constructor() {
     this.index = {};
     this.temp_search = [];
+    this.searchResult = {};
+    this.allIndex = {};
   }
-  // isValid(arrObject) {
-  //   if (typeof arrObject === 'object') {
-  //     const len = Object.keys(arrObject).length;
-  //     if (len > 0) {
-  //       for (const key in arrObject) {
-  //         if (!arrObject[key].hasOwnProperty('title') && !arrObject[key].hasOwnProperty('text')) {
-  //           throw new Error('Dosent have title and text');
-  //         }
-  //       }
-  //     }
-  //   }
-  //   return true;
-  // }
 
   tokenize(words) {
-    const word = words.toLowerCase();
-    return word.trim().replace(/[^a-zA-Z 0-9]+/g, '');
+    const token = words.replace(/,+/g, ' ')
+    .replace(/[^a-zA-Z 0-9\s]+/g, '')
+    .replace(/\s\s/g, ' ')
+    .toLowerCase()
+    .trim();
+    return token;
   }
 
   distinctWords(words) {
@@ -34,9 +27,10 @@ class Index {
       status: true,
       msg: 'Valid File',
     };
-
+    // console.log('my type', typeof file);
     try {
-      if (typeof file !== 'object' || file.length === 0) {
+      if (typeof file !== 'object' || file.length < 1) {
+        // console.log('You see I showed');
         check = {
           status: false,
           msg: 'File is empty please upload a new file',
@@ -57,28 +51,23 @@ class Index {
       };
     }
     if (check.status === false) {
-      throw new Error('Invalid file');
+      throw new Error(check.msg);
     }
   }
+
   createIndex(fileName, jsonObject) {
     const newIndex = {};
-
-    try {
-      jsonObject = JSON.parse(jsonObject);
-    } catch(err) {
-      throw new Error('Not a valid JSON file');
-    }
-
 
     // this.isValid(fileName);
     this.validateFile(jsonObject);
 
     jsonObject.forEach((object, position) => {
-      const longSentence = object.title + ' ' + object.text;
-      const wordArray = longSentence.split(' ');
+      const longSentence = `${object.title} ${object.text}`;
+      // console.log('I am long', longSentence);
+      const tokenized = this.tokenize(longSentence);
+      const wordArray = tokenized.split(' ');
 
       wordArray.forEach((word, pos) => {
-        word = this.tokenize(word);
         if (newIndex[word] === undefined) {
           newIndex[word] = [position];
         } else if (newIndex[word].indexOf(position) < 0) {
@@ -92,11 +81,12 @@ class Index {
   getIndex(fileName) {
     if (Object.keys(arguments).length < 1) {
       return this.index;
-    } else {
-      return this.index[fileName];
     }
+
+    return this.index[fileName];
   }
   flattenSearch() {
+    this.temp_search = [];
     for (const arg of arguments) {
       if (arg instanceof Object && typeof arg !== 'string') {
         for (const item in arg) {
@@ -113,28 +103,44 @@ class Index {
     }
   }
 
-  searchIndex(terms, fileName) {
-    const selectedIndex = this.getIndex(fileName);
+  searchIndex(sTerms, fileName) {
     const searchResult = {};
-    this.flattenSearch(terms);
-    terms = this.temp_search;
-
-    terms.forEach((term) => {
-      term = this.tokenize(term);
-
-      if (selectedIndex) {
-        Object.keys(selectedIndex).forEach((savedWord) => {
-          if (savedWord === term) {
-            searchResult[savedWord] = selectedIndex[savedWord];
+    const allIndex = {};
+    if (fileName !== 'Select file') {
+      const selectedIndex = this.index[fileName];
+      let terms = this.tokenize(sTerms);
+      this.flattenSearch(terms);
+      terms = this.temp_search;
+      terms.forEach((term) => {
+        if (selectedIndex) {
+          Object.keys(selectedIndex).forEach((savedWord) => {
+            if (savedWord === term) {
+              searchResult[savedWord] = selectedIndex[savedWord];
+            }
+          });
+        }
+      });
+      return searchResult;
+    } else {
+      Object.keys(this.index).forEach((filename) => {
+        const selectedIndex = this.index[filename];
+        let terms = this.tokenize(sTerms);
+        this.flattenSearch(terms);
+        terms = this.temp_search;
+        terms.forEach((term) => {
+          if (selectedIndex) {
+            Object.keys(selectedIndex).forEach((savedWord) => {
+              if (savedWord === term) {
+                searchResult[savedWord] = selectedIndex[savedWord];
+              }
+            });
           }
         });
-      } else {
-        const all_indices = this.getIndex();
-        Object.keys(all_indices).forEach((fileName) => {
-          searchResult[fileName] = this.searchIndex(terms, fileName);
-        });
-      }
-    });
-    return searchResult;
+        allIndex[filename] = searchResult;
+      });
+      return allIndex;
+    }
   }
 }
+
+module.exports = Index;

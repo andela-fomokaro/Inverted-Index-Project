@@ -36,7 +36,8 @@ app.controller('myController', ['$scope', ($scope) => {
       }
       $scope.documents = $scope.fileNames.push(file[i].name);
       $scope.showUploaded = true;
-      $scope.$apply($scope.documents);
+      // $scope.$apply($scope.documents);
+      $scope.$apply();
       toastr.success(`${file[i].name} uploaded successfully`, 'Success');
 
       const reader = new FileReader();
@@ -46,45 +47,59 @@ app.controller('myController', ['$scope', ($scope) => {
       };
       reader.readAsText(file[i]);
     }
+    console.log("++++++++upload", $scope.fileContent)
   };
 
   $scope.createIndex = () => {
     const fileName = document.getElementById('selectFile').value;
     let fileContent = $scope.fileContent[fileName];
 
+    if (fileName.length === 0) {
+      return toastr.error('Please upload a file before you create index', 'Error');
+    } else {
+      try {
+        fileContent = JSON.parse(fileContent);
+        invertedIndex.createIndex(fileName, fileContent);
+      } catch (err) {
+        toastr.error(err.message);
+      }
 
-    try {
-      invertedIndex.createIndex(fileName, fileContent);
-    } catch (err) {
-      toastr.error(err.message);
+      const index = invertedIndex.getIndex(fileName);
+      $scope.indices[fileName] = index;
+
+      $scope.fileContent[fileName] = fileContent;
+      const length = fileContent.length;
+      const temp = [];
+      for (let i = 0; i < length; i++) {
+        temp.push(i);
+      }
+
+      $scope.numberOfDocuments[fileName] = temp;
+      $scope.filesToSearch.push(fileName);
+      $scope.showTable = true;
+      console.log($scope.indices);
     }
-
-    const index = invertedIndex.getIndex(fileName);
-    $scope.indices[fileName] = index;
-
-    fileContent = JSON.parse(fileContent);
-    $scope.fileContent[fileName] = fileContent;
-    const length = fileContent.length;
-    const temp = [];
-    for (let i = 0; i < length; i++) {
-      temp.push(i);
-    }
-
-    $scope.numberOfDocuments[fileName] = temp;
-    $scope.filesToSearch.push(fileName);
-    $scope.showTable = true;
-    console.log($scope.indices);
   };
 
 
   $scope.searchIndex = () => {
     const filename = document.getElementById('selectSearchFile').value;
-    const words = document.getElementById('searchBox').value;
-    console.log(filename);
-
-    $scope.searchFileName = filename;
-    $scope.searchResult = invertedIndex.searchIndex(words, filename);
-    $scope.showSearch = true;
+    const words = $scope.searchString;
+    if (filename !== 'Select file') {
+      $scope.searchFileName = filename;
+      $scope.searchResult = invertedIndex.searchIndex(words, filename);
+      $scope.showSearch = true;
+      $scope.showSearchAllFiles = false;
+    } else {
+      $scope.searchResultAllFiles = invertedIndex.searchIndex(words, filename);
+      $scope.showSearch = false;
+      $scope.showSearchAllFiles = true;
+    }
   };
+  $scope.clearSearch = () => {
+    $scope.searchString = '';
+    $scope.showSearch = false;
+    $scope.showSearchAllFiles = false;
+  }
 }]);
 
