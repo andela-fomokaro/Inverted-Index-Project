@@ -36,7 +36,8 @@ app.controller('myController', ['$scope', ($scope) => {
       }
       $scope.documents = $scope.fileNames.push(file[i].name);
       $scope.showUploaded = true;
-      $scope.$apply($scope.documents);
+      // $scope.$apply($scope.documents);
+      $scope.$apply();
       toastr.success(`${file[i].name} uploaded successfully`, 'Success');
 
       const reader = new FileReader();
@@ -46,6 +47,7 @@ app.controller('myController', ['$scope', ($scope) => {
       };
       reader.readAsText(file[i]);
     }
+    console.log("++++++++upload", $scope.fileContent)
   };
 
   $scope.createIndex = () => {
@@ -56,6 +58,7 @@ app.controller('myController', ['$scope', ($scope) => {
       return toastr.error('Please upload a file before you create index', 'Error');
     } else {
       try {
+        fileContent = JSON.parse(fileContent);
         invertedIndex.createIndex(fileName, fileContent);
       } catch (err) {
         toastr.error(err.message);
@@ -64,7 +67,6 @@ app.controller('myController', ['$scope', ($scope) => {
       const index = invertedIndex.getIndex(fileName);
       $scope.indices[fileName] = index;
 
-      fileContent = JSON.parse(fileContent);
       $scope.fileContent[fileName] = fileContent;
       const length = fileContent.length;
       const temp = [];
@@ -82,12 +84,22 @@ app.controller('myController', ['$scope', ($scope) => {
 
   $scope.searchIndex = () => {
     const filename = document.getElementById('selectSearchFile').value;
-    const words = document.getElementById('searchBox').value;
-    console.log(filename);
-
-    $scope.searchFileName = filename;
-    $scope.searchResult = invertedIndex.searchIndex(words, filename);
-    $scope.showSearch = true;
+    const words = $scope.searchString;
+    if (filename !== 'Select file') {
+      $scope.searchFileName = filename;
+      $scope.searchResult = invertedIndex.searchIndex(words, filename);
+      $scope.showSearch = true;
+      $scope.showSearchAllFiles = false;
+    } else {
+      $scope.searchResultAllFiles = invertedIndex.searchIndex(words, filename);
+      $scope.showSearch = false;
+      $scope.showSearchAllFiles = true;
+    }
   };
+  $scope.clearSearch = () => {
+    $scope.searchString = '';
+    $scope.showSearch = false;
+    $scope.showSearchAllFiles = false;
+  }
 }]);
 
