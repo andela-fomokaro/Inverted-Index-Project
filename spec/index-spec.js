@@ -149,7 +149,3 @@ describe('InvertedIndex class, check all methods', () => {
     expect(typeof invertedIndex.flattenSearch).toBe('function');
   });
 });
-
-
-// istanbul cover jasmine spec/index-spec.js
-
