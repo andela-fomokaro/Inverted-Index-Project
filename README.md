@@ -1,8 +1,6 @@
 # Inverted-Index-Project
 
-[![Code Climate](https://codeclimate.com/github/andela-fomokaro/Inverted-Index-Project/badges/gpa.svg)](https://codeclimate.com/github/andela-fomokaro/Inverted-Index-Project)
-
-
+[![Code Climate](https://codeclimate.com/github/andela-fomokaro/Inverted-Index-Project/badges/gpa.svg)](https://codeclimate.com/github/andela-fomokaro/Inverted-Index-Project) [![Coverage Status](https://coveralls.io/repos/github/andela-fomokaro/Inverted-Index-Project/badge.svg?branch=features)](https://coveralls.io/github/andela-fomokaro/Inverted-Index-Project?branch=features) [![Build Status](https://travis-ci.org/andela-fomokaro/Inverted-Index-Project.svg?branch=master)](https://travis-ci.org/andela-fomokaro/Inverted-Index-Project)
 
 
 
