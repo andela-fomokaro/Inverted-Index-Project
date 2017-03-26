@@ -24,6 +24,7 @@
     "eslint-plugin-react": "^6.7.1",
     "gulp-clean-css": "^3.0.3",
     "gulp-uglify": "^2.1.0",
+    "istanbul": "^0.4.5",
     "jasmine": "^2.5.3",
     "pump": "^1.0.2"
   },
