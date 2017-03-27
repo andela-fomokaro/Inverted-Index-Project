@@ -15,7 +15,6 @@ const work = [{
 },
 ];
 
-// Test Suite
 describe('Define methods for Index class', () => {
   invertedIndex.createIndex('work.json', workBook);
   it('Should ensure that invertedIndex methods are defined', () => {

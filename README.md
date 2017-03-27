@@ -4,11 +4,11 @@
 
 
 
-## Concept
+## Introduction
 
-Once upon a time in the realm of computer science, computers became good enough to support storage of very large files and documents and then came the problem of searching for a little parts in large files. The traditional approach was to loop through the whole file to find the little block of text which was not very efficient. The saviour came and a concept in CS known as elastic search (say: Inverted Index)
+Inverted index takes a JSON array of text objects and creates an index from the array. The index allows a user to search for text blocks in the array that contain a specified collection of words.
 
-The purpose of an inverted index is to allow fast full text searches, at a cost of increased processing when a document is added to the database.
+
 
 ## References
 
@@ -16,9 +16,6 @@ Inverted index - wikipedia.com
 
 Inverted index - elastic search
 
-## Use Cases
-
-You have large number of documents you need to perform search operations on.
 
 ## Limitations
 
@@ -41,8 +38,8 @@ Start the deployed or local version of the application npm start as outlined abo
 Upload JSON files containing an array of object literals like the example below:
 
 [{
-  "title": "The Sugar Girl",
-  "text": "Ralia is lost in the forest and the whole village is in search for her, an innocent witch also accused"
+  "title": "Alice is a girl",
+  "text": "Alice went to school and never returned"
 }]
 Click on Create Index button after uploading and you will see a table containing mapped words and their document location
 Use the search bar on the right side of the app display layout to perform search operations.
@@ -56,3 +53,12 @@ Jasmine for Testing
 ## Testing
 
 After setting up the local version of the application, run gulp test to run test
+
+
+##Contributing
+- Fork this repositry to your account.
+- Clone your repositry: git clone git@github.com:your-username/inverted-index.git
+- Create your feature branch: git checkout -b new-feature
+- Commit your changes: git commit -m "did something"
+- Push to the remote branch: git push origin new-feature
+- Open a pull request.
