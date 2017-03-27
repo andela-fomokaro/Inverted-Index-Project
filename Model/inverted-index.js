@@ -19,7 +19,7 @@ class Index {
      * @param {string} words
      * @return {String}
      */
-  static tokenize(words) {
+     tokenize(words) {
     const token = words.replace(/,+/g, ' ')
     .replace(/[^a-zA-Z 0-9\s]+/g, '')
     .replace(/\s\s/g, ' ')
