@@ -43,13 +43,7 @@ class Index {
         }
       });
     } catch (error) {
-      check = {
-        status: false,
-        msg: 'Invalid File',
-      };
-    }
-    if (check.status === false) {
-      throw new Error(check.msg);
+      return error.msg;
     }
   }
 

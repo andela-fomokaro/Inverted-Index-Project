@@ -115,6 +115,12 @@ describe('Tokenize words', () => {
     words = invertedIndex.tokenize(words);
     expect(termsExpected).toEqual(words);
   });
+  it('should return tokenized words for terms', () => {
+    let token = 'ALICE has GoNE to the maRKEt';
+    const tokenExpected = 'alice has gone to the market';
+    token = invertedIndex.tokenize(token);
+    expect(tokenExpected).toEqual(token);
+  });
 });
 
 describe('Validate File', () => {
@@ -122,6 +128,13 @@ describe('Validate File', () => {
     () => {
       expect(invertedIndex.validateFile(work)).toBeFalsy();
     });
+  it('should return falsy if book data is an empty array', () => {
+    expect(invertedIndex.validateFile([])).toBeFalsy();
+  });
+  it('should return falsy if book data is not an array of object literals', () => {
+    expect(invertedIndex.validateFile('theDojo')).toBeFalsy();
+    expect(invertedIndex.validateFile(100)).toBeFalsy();
+  });
 });
 
 describe('InvertedIndex class, check all methods', () => {
