@@ -9,7 +9,7 @@ gulp.task('browserSync', () => {
       baseDir: './',
       index: 'public/index.html',
     },
-    port: 3000,
+    port: process.env.PORT || 3000,
     files: ['Model/**', 'public/**/*.*'],
     open: false,
   });
