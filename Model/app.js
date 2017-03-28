@@ -36,12 +36,11 @@ app.controller('myController', ['$scope', ($scope) => {
       // $scope.$apply($scope.documents);
       $scope.$apply();
       toastr.success(`${file[i].name} uploaded successfully`, 'Success');
-      const reader = new FileReader();
-      reader.onload = () => {
-        $scope.fileContent[file[i].name] = reader.result;
+
+      invertedIndex.readFile(file[i], (e) => {
+        $scope.fileContent[file[i].name] = e.target.result;
         $scope.$apply();
-      };
-      reader.readAsText(file[i]);
+      });
     }
   };
   $scope.createIndex = () => {
