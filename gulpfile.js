@@ -1,7 +1,5 @@
 const gulp = require('gulp');
 const MinifyCSS = require('gulp-clean-css');
-const uglify = require('gulp-uglify');
-const pump = require('pump');
 const eslint = require('gulp-eslint');
 const browserSync = require('browser-sync');
 
