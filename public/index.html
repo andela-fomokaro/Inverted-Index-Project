@@ -22,7 +22,7 @@
         </nav>
 
         <div class='row'>
-            <div class='col-sm-3 col-md-4'>
+            <div class='col-sm-6 col-md-4'>
                 <div class='jumbotron'>
                     <form class="navbar-form">
                         <select class="searchSelect" id="selectSearchFile">
@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <div class='col-sm-9 col-md-6'>
+            <div class='col-sm-6 col-md-6'>
                 <div class="dropdown">
                     <span class="dropdown-toggle drop" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           <div class="pull-left"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Instruction</div>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="row">
-        <div class='col-sm-3 col-md-4'>
+        <div class='col-sm-6 col-md-4'>
             <div class="jumbotron">
                 <form class="form">
                     <label class="btn upload_file" type="submit" name="submit">
@@ -83,10 +83,8 @@
 
             </div>
         </div>
-    </div>
 
-    <div class='row'>
-        <div class='col-sm-3 col-md-6' class='ng-cloak'>
+        <div class='col-sm-6 col-md-6' class='ng-cloak'>
             <div ng-show="showTable">
                 <h3 class="style"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>Table Of Indices</h3>
                 <div ng-repeat="(filename, index) in indices">
@@ -111,10 +109,13 @@
                 </div>
             </div>
         </div>
+        </div>
 
-        <div class='col-sm-9 col-md-6' class='ng-cloak'>
-            <div ng-show="showSearch">
-                <h3 class="style"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Table Of Searches</h3>
+        <!--<div class='col-sm-6 col-md-6' class='ng-cloak'>
+            <div ng-show="showSearch">-->
+                <div id="modalSearch" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
                 <h3 class='h3'>Display Search for {{searchFileName}}</h3>
                 <table class="table table-fixed">
                     <thead class='table-fixed thead'>
@@ -134,6 +135,35 @@
                 </table>
             </div>
         </div>
+    </div>
+
+     <!--<div ng-show="showSearchAllFiles">-->
+         <div id="modalSearchFile" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+        <div ng-repeat="(searchFileName, searchResult) in searchResultAllFiles ">
+          <div class="table_style">
+          <h3>Display Search for {{searchFileName}}</h3>
+          <table class="table table-fixed">
+                    <thead class='table-fixed thead'>
+                        <tr class='table-fixed tr'>
+                            <th class="table-fixed th col-md-4">Words</th>
+                <th class="table-fixed th col-md-4" ng-repeat="document in fileContent[searchFileName] track by $index">{{document.title}}</th>
+              </tr>
+            </thead>
+            <tbody class='table-fixed tbody'>
+              <tr ng-repeat="(key, value) in searchResult" class='table-fixed tr'>
+                <td class='table-fixed td'>{{key}}</td>
+                <td ng-repeat="number in numberOfDocuments[searchFileName] track by $index" class='table-fixed td'>
+                  <span ng-class="value.includes(number) ? 'glyphicon-ok' : 'glyphicon-remove'" class="glyphicon glyphicon-ok"></span>
+                </td>
+              </tr>
+            </tbody>
+            </table>
+            </div>
+          </div>
+      </div>
+      </div>
     </div>
     <footer class="move">
         <nav class="navbar">

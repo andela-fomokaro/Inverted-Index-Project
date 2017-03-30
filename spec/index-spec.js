@@ -2,7 +2,7 @@ const Index = require('../Model/inverted-index');
 const invalidBook = require('../files/test.json');
 const workBook = require('../files/work.json');
 
-const invertedIndex = new Index();
+const invertedIndex = new InvertedIndex();
 
 const work = [{
   title: 'Checkpoint one',
