@@ -120,9 +120,9 @@ class InvertedIndex {
    *
    *
    * @method flattenSearch
-   * @param {void}
    *
-   * @return {void}
+   *
+   *
    */
   flattenSearch() {
     this.temp_search = [];
