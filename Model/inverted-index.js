@@ -117,29 +117,14 @@ class InvertedIndex {
     return this.index[fileName];
   }
   /**
-   *
-   *
    * @method flattenSearch
-   *
-   *
-   *
+   * @param {void} arguments of terms
+   * @return {Array} array of terms
    */
-  flattenSearch() {
-    this.temp_search = [];
-    for (const arg of arguments) {
-      if (arg instanceof Object && typeof arg !== 'string') {
-        for (const item in arg) {
-          if (arg.hasOwnProperty(item)) {
-            this.flattenSearch(arg[item]);
-          }
-        }
-      } else {
-        const args = arg.split(' ');
-        args.forEach((word) => {
-          this.temp_search.push(word);
-        });
-      }
-    }
+  flattenSearch(...args) {
+    return args.reduce((acc, val) =>
+      acc.concat(Array.isArray(val) ?
+      this.flattenSearch(val) : val.split(' ')), []);
   }
 /**
      * it returns the word searched for in the object it was found
@@ -156,8 +141,7 @@ class InvertedIndex {
     if (fileName !== 'Select file') {
       const selectedIndex = this.index[fileName];
       let terms = this.tokenize(sTerms);
-      this.flattenSearch(terms);
-      terms = this.temp_search;
+      terms = this.flattenSearch(terms);
       terms.forEach((term) => {
         if (selectedIndex) {
           Object.keys(selectedIndex).forEach((savedWord) => {
@@ -172,8 +156,8 @@ class InvertedIndex {
     Object.keys(this.index).forEach((filename) => {
       const selectedIndex = this.index[filename];
       let terms = this.tokenize(sTerms);
-      this.flattenSearch(terms);
-      terms = this.temp_search;
+      // this.flattenSearch(terms);
+      terms = this.flattenSearch(terms);
       terms.forEach((term) => {
         if (selectedIndex) {
           Object.keys(selectedIndex).forEach((savedWord) => {
