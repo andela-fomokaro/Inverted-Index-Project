@@ -23,7 +23,7 @@ class InvertedIndex {
   tokenize(words) {
     this.token = words.replace(/,+/g, ' ')
     .replace(/[^a-zA-Z 0-9\s]+/g, '')
-    .replace(/\s\s/g, ' ')
+    .replace(/\s+/g, ' ')
     .toLowerCase()
     .trim();
     return this.token;
@@ -57,7 +57,7 @@ class InvertedIndex {
     if (!Array.isArray(file) || file.length < 1) {
       check = {
         status: false,
-        msg: 'File is empty please upload a new file',
+        msg: 'File is empty upload a file',
       };
     } else {
       jsonFile.forEach((key) => {

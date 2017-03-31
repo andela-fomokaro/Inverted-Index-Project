@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func*/
 const app = angular.module('inverted_index', []);
 app.controller('myController', ['$scope', ($scope) => {
   const invertedIndex = new InvertedIndex();
@@ -14,10 +15,6 @@ app.controller('myController', ['$scope', ($scope) => {
   $scope.fileContent = {};
   $scope.search = {};
   const fileUpload = document.getElementById('files');
-  // const indexBtn = document.getElementById('index');
-  // const selectFiles = document.getElementById('selectFiles');
-  // const search = document.getElementById('searchTerms');
-  // const fileName = $scope.selectFiles;
   fileUpload.addEventListener('change', () => {
     $scope.uploadFile(fileUpload);
   });
@@ -33,7 +30,6 @@ app.controller('myController', ['$scope', ($scope) => {
       }
       $scope.documents = $scope.fileNames.push(file[i].name);
       $scope.$apply();
-
       InvertedIndex.readFile(file[i], (e) => {
         const data = JSON.parse(e.target.result);
         const fileCheck = InvertedIndex.validateFile(data);
