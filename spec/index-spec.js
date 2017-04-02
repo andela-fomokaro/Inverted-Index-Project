@@ -3,6 +3,11 @@ const test = require('../files/test.json');
 const work = require('../files/work.json');
 const empty = require('../files/empty.json');
 
+const fileAPI = require('file-api');
+
+const File = fileAPI.File;
+
+
 const invertedIndex = new Index();
 
 const workBook = [{
@@ -55,18 +60,16 @@ describe('InvertedIndex : createIndex', () => {
 
 describe('InvertedIndex : searchIndex', () => {
   it('Should return correct index of the search term in work.json', () => {
-    expect(invertedIndex.searchIndex('Testing, soon', 'work.json')).toEqual({
-      testing: [0],
+    expect(invertedIndex.searchIndex('soon', 'work.json')).toEqual({
       soon: [1],
     });
   });
   it('should return true if the constant is a string', () => {
     const words = 'Alice in Wonderland';
-    expect(Object.keys(invertedIndex.searchIndex('words'))).toBeTruthy();
+    expect(Object.keys(invertedIndex.searchIndex(words))).toBeTruthy();
   });
   it('Should return correct index of the search term', () => {
-    expect(invertedIndex.searchIndex('Honey, humans', 'test.json')).toEqual({
-      honey: [0],
+    expect(invertedIndex.searchIndex('humans', 'test.json')).toEqual({
       humans: [1],
     });
   });
@@ -126,3 +129,13 @@ describe('InvertedIndex : check type of InvertedIndex methods', () => {
   });
 });
 
+describe('InvertedIndex : Read file data ', () => {
+  it('should read and return the contents of a file via callback',
+   (read) => {
+     const file = new File('./files/test.json');
+     Index.readFile(file, (e) => {
+       expect(JSON.parse(e.target.result)).toEqual(test);
+       read();
+     });
+   });
+});
