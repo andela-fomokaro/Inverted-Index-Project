@@ -1,6 +1,7 @@
+/* eslint-disable no-loop-func*/
 const app = angular.module('inverted_index', []);
 app.controller('myController', ['$scope', ($scope) => {
-  const invertedIndex = new Index();
+  const invertedIndex = new InvertedIndex();
   $scope.documents = [];
   $scope.fileNames = [];
   $scope.numberOfDocuments = {};
@@ -13,17 +14,11 @@ app.controller('myController', ['$scope', ($scope) => {
   $scope.filesToSearch = [];
   $scope.fileContent = {};
   $scope.search = {};
-
-  const file = document.getElementById('files');
-  const indexBtn = document.getElementById('index');
-  const selectFiles = document.getElementById('selectFiles');
-  const search = document.getElementById('searchTerms');
-  const fileName = $scope.selectFiles;
-
-  file.addEventListener('change', () => {
-    $scope.uploadFile(file);
+  $scope.searchResults = {};
+  const fileUpload = document.getElementById('files');
+  fileUpload.addEventListener('change', () => {
+    $scope.uploadFile(fileUpload);
   });
-
   $scope.uploadFile = (file) => {
     file = file.files;
     for (let i = 0; i < file.length; i += 1) {
@@ -32,74 +27,68 @@ app.controller('myController', ['$scope', ($scope) => {
         return toastr.error('This is not a json file');
       }
       if ($scope.fileNames.includes(file[i].name)) {
-        return toastr.error(`${file[i].name} has already been uploaded`, 'Error');
+        return toastr.error(`${file[i].name} has been uploaded`, 'Error');
       }
       $scope.documents = $scope.fileNames.push(file[i].name);
-      $scope.showUploaded = true;
-      // $scope.$apply($scope.documents);
       $scope.$apply();
-      toastr.success(`${file[i].name} uploaded successfully`, 'Success');
-
-      const reader = new FileReader();
-      reader.onload = () => {
-        $scope.fileContent[file[i].name] = reader.result;
-        $scope.$apply();
-      };
-      reader.readAsText(file[i]);
+      InvertedIndex.readFile(file[i], (e) => {
+        const data = JSON.parse(e.target.result);
+        const fileCheck = InvertedIndex.validateFile(data);
+        if (fileCheck.status) {
+          $scope.fileContent[file[i].name] = data;
+          $scope.$apply();
+          toastr.success(`${file[i].name} uploaded successfully`, 'Success');
+        } else {
+          return toastr.error(fileCheck.msg);
+        }
+      });
     }
-    console.log("++++++++upload", $scope.fileContent)
   };
-
   $scope.createIndex = () => {
     const fileName = document.getElementById('selectFile').value;
-    let fileContent = $scope.fileContent[fileName];
-
+    const fileContent = $scope.fileContent[fileName];
     if (fileName.length === 0) {
-      return toastr.error('Please upload a file before you create index', 'Error');
-    } else {
-      try {
-        fileContent = JSON.parse(fileContent);
-        invertedIndex.createIndex(fileName, fileContent);
-      } catch (err) {
-        toastr.error(err.message);
-      }
-
-      const index = invertedIndex.getIndex(fileName);
-      $scope.indices[fileName] = index;
-
-      $scope.fileContent[fileName] = fileContent;
-      const length = fileContent.length;
-      const temp = [];
-      for (let i = 0; i < length; i++) {
-        temp.push(i);
-      }
-
-      $scope.numberOfDocuments[fileName] = temp;
-      $scope.filesToSearch.push(fileName);
-      $scope.showTable = true;
-      console.log($scope.indices);
+      return toastr.error('Upload a file before you create index', 'Error');
     }
+    try {
+      invertedIndex.createIndex(fileName, fileContent);
+    } catch (err) {
+      toastr.error(err.message);
+    }
+    const index = invertedIndex.getIndex(fileName);
+    $scope.indices[fileName] = index;
+    $scope.fileContent[fileName] = fileContent;
+    const length = fileContent.length;
+    const temp = [];
+    let i = 0;
+    fileContent.forEach(() => {
+      temp.push(i);
+      i += 1;
+    });
+    $scope.numberOfDocuments[fileName] = temp;
+    $scope.showTable = true;
+    return $scope.filesToSearch.push(fileName);
   };
-
 
   $scope.searchIndex = () => {
+    $scope.searchResults = {};
     const filename = document.getElementById('selectSearchFile').value;
-    const words = $scope.searchString;
-    if (filename !== 'Select file') {
-      $scope.searchFileName = filename;
-      $scope.searchResult = invertedIndex.searchIndex(words, filename);
-      $scope.showSearch = true;
-      $scope.showSearchAllFiles = false;
-    } else {
-      $scope.searchResultAllFiles = invertedIndex.searchIndex(words, filename);
-      $scope.showSearch = false;
-      $scope.showSearchAllFiles = true;
+    if (filename === 'Select file') {
+      toastr.error('select a file to search', 'Error');
+      return;
     }
+
+    const words = $scope.searchString;
+    if (filename === 'All files') {
+      $scope.searchResults = invertedIndex.searchIndex(words, filename);
+    } else {
+      $scope.searchResults[filename] =
+        invertedIndex.searchIndex(words, filename);
+    }
+    $('#modalSearchFile').modal('show');
   };
+
   $scope.clearSearch = () => {
     $scope.searchString = '';
-    $scope.showSearch = false;
-    $scope.showSearchAllFiles = false;
-  }
+  };
 }]);
-

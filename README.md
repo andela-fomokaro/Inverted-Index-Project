@@ -1,39 +1,34 @@
 # Inverted-Index-Project
 
-[![Code Climate](https://codeclimate.com/github/andela-fomokaro/Inverted-Index-Project/badges/gpa.svg)](https://codeclimate.com/github/andela-fomokaro/Inverted-Index-Project)
+[![Code Climate](https://codeclimate.com/github/andela-fomokaro/Inverted-Index-Project/badges/gpa.svg?branch=develop)](https://codeclimate.com/github/andela-fomokaro/Inverted-Index-Project) [![Coverage Status](https://coveralls.io/repos/github/andela-fomokaro/Inverted-Index-Project/badge.svg?branch=develop)](https://coveralls.io/github/andela-fomokaro/Inverted-Index-Project?branch=develop)[![Build Status](https://travis-ci.org/andela-fomokaro/Inverted-Index-Project.svg?branch=develop)](https://travis-ci.org/andela-fomokaro/Inverted-Index-Project)
 
 
 
+## Introduction
+
+Inverted index takes a JSON array of text objects and creates an index from the array. The index allows a user to search for text blocks in the array that contain a specified collection of words.
 
 
-## Concept
-
-Once upon a time in the realm of computer science, computers became good enough to support storage of very large files and documents and then came the problem of searching for a little parts in large files. The traditional approach was to loop through the whole file to find the little block of text which was not very efficient. The saviour came and a concept in CS known as elastic search (say: Inverted Index)
-
-The purpose of an inverted index is to allow fast full text searches, at a cost of increased processing when a document is added to the database.
 
 ## References
 
-Inverted index - wikipedia.com
+Inverted index - [wikipedia.com](https://en.wikipedia.org/wiki/Inverted_index)
 
-Inverted index - elastic search
+Inverted index - [elastic search](https://www.elastic.co/guide/en/elasticsearch/guide/current/inverted-index.html)
 
-## Use Cases
-
-You have large number of documents you need to perform search operations on.
 
 ## Limitations
 
-This app can only work for JSON files with members having title and text properties.
+This app can only accept JSON files with objects having title and text properties.
 
 ## Running Locally
 
 Follow the steps below to run the application locally on your machine.
 
-Clone the repository: git clone <THIS_REPOSITORY_URL>
-Enter into the apps directory by running cd Inverted-Index-Project
-Install npm packages npm install
-Run the app by typing gulp
+- Clone the repository: git clone <https://github.com/andela-fomokaro/Inverted-Index-Project>
+- Enter into the apps directory by running cd Inverted-Index-Project
+- Install npm packages npm install
+- Run the app by typing gulp
 
 ## How to Use
 
@@ -43,18 +38,27 @@ Start the deployed or local version of the application npm start as outlined abo
 Upload JSON files containing an array of object literals like the example below:
 
 [{
-  "title": "The Sugar Girl",
-  "text": "Ralia is lost in the forest and the whole village is in search for her, an innocent witch also accused"
+  "title": "Alice is a girl",
+  "text": "Alice went to school and never returned"
 }]
 Click on Create Index button after uploading and you will see a table containing mapped words and their document location
 Use the search bar on the right side of the app display layout to perform search operations.
 
 ## Technology
 
-HTML5
-Javascript (NODEJS Environment)
-Jasmine for Testing
+- HTML5
+- Javascript (NODEJS Environment)
+- Jasmine for Testing
 
 ## Testing
 
 After setting up the local version of the application, run gulp test to run test
+
+
+## Contributing
+- Fork this repositry to your account.
+- Clone your repositry: git clone git@github.com:your-username/inverted-index.git
+- Create your feature branch: git checkout -b new-feature
+- Commit your changes: git commit -m "did something"
+- Push to the remote branch: git push origin new-feature
+- Open a pull request.

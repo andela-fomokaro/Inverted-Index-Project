@@ -1,7 +1,5 @@
 const gulp = require('gulp');
 const MinifyCSS = require('gulp-clean-css');
-const uglify = require('gulp-uglify');
-const pump = require('pump');
 const eslint = require('gulp-eslint');
 const browserSync = require('browser-sync');
 
@@ -11,8 +9,8 @@ gulp.task('browserSync', () => {
       baseDir: './',
       index: 'public/index.html',
     },
-    port: 3000,
-    files: ['Model/**', 'public/**/*.*'],
+    port: process.env.PORT || 3000,
+    files: ['Model/**', 'public/**/*.*', 'spec/**/*.*'],
     open: false,
   });
 });
@@ -20,22 +18,14 @@ gulp.task('browserSync', () => {
 
 gulp.task('default', ['MinifyCSS', 'browserSync'], () => {});
 
-gulp.task('MinifyCSS', () => {
-  return gulp.src('style.css')
+gulp.task('MinifyCSS', () => gulp.src('style.css')
   .pipe(MinifyCSS())
-  .pipe(gulp.dest('style.min.css'));
-});
+  .pipe(gulp.dest('style.min.css')));
 
-gulp.task('say', () => {
-  console.log('The task is running....');
-});
 
-gulp.task('lint', () => {
-    // ESLint ignores files with "node_modules" paths.
-    // So, it's best to have gulp ignore the directory as well.
-    // Also, Be sure to return the stream from the task;
+gulp.task('lint', () =>
     // Otherwise, the task may end before the stream has finished.
-  return gulp.src(['src/*.js', '!node_modules/**'])
+   gulp.src(['src/*.js', '!node_modules/**'])
         // eslint() attaches the lint output to the "eslint" property
         // of the file object so it can be used by other modules.
         .pipe(eslint())
@@ -44,6 +34,5 @@ gulp.task('lint', () => {
         .pipe(eslint.format())
         // To have the process exit with an error code (1) on
         // lint error, return the stream and pipe to failAfterError last.
-        .pipe(eslint.failAfterError());
-});
+        .pipe(eslint.failAfterError()));
 

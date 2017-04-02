@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for spec/index-spec.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">spec/</a> index-spec.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>69/69</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>69/69</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Index = require('../Model/inverted-index');
+const invalidBook = require('../files/test.json');
+const workBook = require('../files/work.json');
+&nbsp;
+const invertedIndex = new Index();
+&nbsp;
+const work = [{
+  title: 'Checkpoint one',
+  text: 'Testing getIndex function',
+},
+&nbsp;
+{
+  title: 'Checkpoint Two',
+  text: 'Coming soon',
+},
+];
+&nbsp;
+// Test Suite
+describe('Define methods for Index class', () =&gt; {
+  invertedIndex.createIndex('work.json', workBook);
+  it('Should ensure that invertedIndex methods are defined', () =&gt; {
+    expect(invertedIndex.getIndex).toBeDefined();
+  });
+  it('Should ensure that invertedIndex methods are defined', () =&gt; {
+    expect(invertedIndex.createIndex).toBeDefined();
+  });
+  it('Should ensure that invertedIndex methods are defined', () =&gt; {
+    expect(invertedIndex.tokenize).toBeDefined();
+  });
+  it('Should ensure that invertedIndex methods are defined', () =&gt; {
+    expect(invertedIndex.validateFile).toBeDefined();
+  });
+  it('Should ensure that invertedIndex methods are defined', () =&gt; {
+    expect(invertedIndex.searchIndex).toBeDefined();
+  });
+});
+&nbsp;
+describe('Should return an object that is an accurate index of the work.json file', () =&gt; {
+  invertedIndex.createIndex('work.json', work);
+  it('should verify that index has been created', () =&gt; {
+    expect(Object.keys(invertedIndex.getIndex('work.json', work)).length)
+      .toBeGreaterThan(0);
+  });
+&nbsp;
+  it('Should return an object that is an accurate index of the work.json file',
+    () =&gt; {
+      expect(invertedIndex.getIndex('work.json', work)).toEqual({
+        checkpoint: [0, 1],
+        one: [0],
+        testing: [0],
+        getindex: [0],
+        function: [0],
+        two: [1],
+        coming: [1],
+        soon: [1],
+      });
+    });
+});
+describe('Should create an object that is an accurate index of test.json file', () =&gt; {
+  invertedIndex.createIndex('test.json', invalidBook);
+  it('should verify that index has been created', () =&gt; {
+    expect(Object.keys(invertedIndex.getIndex('test.json', invalidBook)).length)
+      .toBeGreaterThan(0);
+  });
+&nbsp;
+  it('Should create an object that is an accurate index of test.json file',
+    () =&gt; {
+      expect(invertedIndex.getIndex('test.json', invalidBook)).toEqual({
+        honey: [0],
+        i: [0],
+        shrunked: [0],
+        the: [0],
+        kids: [0],
+        an: [0],
+        american: [0],
+        movie: [0, 1],
+        produced: [0],
+        birds: [0],
+        ant: [1],
+        bully: [1],
+        animated: [1],
+        epic: [1],
+        of: [1],
+        ants: [1],
+        bullying: [1],
+        humans: [1],
+      });
+    });
+});
+&nbsp;
+describe('Search Index', () =&gt; {
+  it('Should return correct index of the search term in work.json', () =&gt; {
+    expect(invertedIndex.searchIndex('Testing, soon', 'work.json')).toEqual({
+      testing: [0],
+      soon: [1],
+    });
+  });
+  it('should return true if search term is a string', () =&gt; {
+    const words = 'Alice in Wonderland';
+    expect(Object.keys(invertedIndex.searchIndex('words', 'book.json'))).toBeTruthy();
+  });
+  it('Should return correct index of the search term in test.json', () =&gt; {
+    expect(invertedIndex.searchIndex('Honey, birds, humans', 'test.json')).toEqual({
+      honey: [0],
+      birds: [0],
+      humans: [1],
+    });
+  });
+});
+&nbsp;
+describe('Tokenize words', () =&gt; {
+  it('should return tokenized words for terms', () =&gt; {
+    let words = 'It CAN only BE+ GOD';
+    const termsExpected = 'it can only be god';
+    words = invertedIndex.tokenize(words);
+    expect(termsExpected).toEqual(words);
+  });
+  it('should return tokenized words for terms', () =&gt; {
+    let token = 'ALICE has GoNE to the maRKEt';
+    const tokenExpected = 'alice has gone to the market';
+    token = invertedIndex.tokenize(token);
+    expect(tokenExpected).toEqual(token);
+  });
+});
+&nbsp;
+describe('Validate File', () =&gt; {
+  it('should check that the contents of the file to be uploaded is valid',
+    () =&gt; {
+      expect(invertedIndex.validateFile(work)).toBeFalsy();
+    });
+  it('should return falsy if book data is an empty array', () =&gt; {
+    expect(invertedIndex.validateFile([])).toBeFalsy();
+  });
+  it('should return falsy if book data is not an array of object literals', () =&gt; {
+    expect(invertedIndex.validateFile('theDojo')).toBeFalsy();
+    expect(invertedIndex.validateFile(100)).toBeFalsy();
+  });
+});
+&nbsp;
+describe('InvertedIndex class, check all methods', () =&gt; {
+  it('should check that the class has a createIndex method', () =&gt; {
+    expect(typeof invertedIndex.createIndex).toBe('function');
+  });
+&nbsp;
+  it('should check that the class has a validateFile method', () =&gt; {
+    expect(typeof invertedIndex.validateFile).toBe('function');
+  });
+&nbsp;
+  it('should check that the class has a tokenize method', () =&gt; {
+    expect(typeof invertedIndex.tokenize).toBe('function');
+  });
+&nbsp;
+  it('should check that the class has a getIndex method', () =&gt; {
+    expect(typeof invertedIndex.getIndex).toBe('function');
+  });
+&nbsp;
+  it('should check that the class has a searchIndex method', () =&gt; {
+    expect(typeof invertedIndex.searchIndex).toBe('function');
+  });
+&nbsp;
+  it('should check that the class has a searchIndex method', () =&gt; {
+    expect(typeof invertedIndex.flattenSearch).toBe('function');
+  });
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 27 2017 01:21:02 GMT+0100 (WAT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
