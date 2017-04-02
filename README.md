@@ -46,9 +46,9 @@ Use the search bar on the right side of the app display layout to perform search
 
 ## Technology
 
-HTML5
-Javascript (NODEJS Environment)
-Jasmine for Testing
+- HTML5
+- Javascript (NODEJS Environment)
+- Jasmine for Testing
 
 ## Testing
 

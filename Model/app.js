@@ -60,9 +60,11 @@ app.controller('myController', ['$scope', ($scope) => {
     $scope.fileContent[fileName] = fileContent;
     const length = fileContent.length;
     const temp = [];
-    for (let i = 0; i < length; i += 1) {
+    let i = 0;
+    fileContent.forEach(() => {
       temp.push(i);
-    }
+      i += 1;
+    });
     $scope.numberOfDocuments[fileName] = temp;
     $scope.showTable = true;
     return $scope.filesToSearch.push(fileName);
