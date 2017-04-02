@@ -55,7 +55,7 @@ Jasmine for Testing
 After setting up the local version of the application, run gulp test to run test
 
 
-##Contributing
+## Contributing
 - Fork this repositry to your account.
 - Clone your repositry: git clone git@github.com:your-username/inverted-index.git
 - Create your feature branch: git checkout -b new-feature
