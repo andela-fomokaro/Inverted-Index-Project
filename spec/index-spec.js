@@ -73,6 +73,10 @@ describe('InvertedIndex : searchIndex', () => {
       humans: [1],
     });
   });
+  it('Should return search for all files', () => {
+    expect(Object.keys(invertedIndex.searchIndex('soon', 'work.json')))
+       .toEqual(['soon']);
+  });
   it('should return tokenized words for string in variable words', () => {
     let words = 'It CAN only BE++ $$$$$   GOD';
     const termsExpected = 'it can only be god';
