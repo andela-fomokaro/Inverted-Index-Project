@@ -12,23 +12,23 @@ Inverted index takes a JSON array of text objects and creates an index from the 
 
 ## References
 
-Inverted index - wikipedia.com
+Inverted index - [wikipedia.com](https://en.wikipedia.org/wiki/Inverted_index)
 
-Inverted index - elastic search
+Inverted index - [elastic search](https://www.elastic.co/guide/en/elasticsearch/guide/current/inverted-index.html)
 
 
 ## Limitations
 
-This app can only work for JSON files with members having title and text properties.
+This app can only accept JSON files with objects having title and text properties.
 
 ## Running Locally
 
 Follow the steps below to run the application locally on your machine.
 
-Clone the repository: git clone <THIS_REPOSITORY_URL>
-Enter into the apps directory by running cd Inverted-Index-Project
-Install npm packages npm install
-Run the app by typing gulp
+- Clone the repository: git clone <https://github.com/andela-fomokaro/Inverted-Index-Project>
+- Enter into the apps directory by running cd Inverted-Index-Project
+- Install npm packages npm install
+- Run the app by typing gulp
 
 ## How to Use
 
