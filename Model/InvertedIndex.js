@@ -1,3 +1,6 @@
+const fileApi = require('file-api');
+
+const FileReader = fileApi.FileReader;
 /**
  * Implementation of the inverted index data structure.
  * @author Omokaro Faith <faith.omokaro@andela.com>
