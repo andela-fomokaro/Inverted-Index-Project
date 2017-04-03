@@ -1,11 +1,7 @@
-const Index = require('../Model/inverted-index.js');
+const Index = require('../Model/InvertedIndex');
 const test = require('../files/test.json');
 const work = require('../files/work.json');
 const empty = require('../files/empty.json');
-
-const fileAPI = require('file-api');
-
-const File = fileAPI.File;
 
 
 const invertedIndex = new Index();
@@ -100,22 +96,8 @@ describe('InvertedIndex : check type of InvertedIndex methods', () => {
   it('should check that the class has a searchIndex method', () => {
     expect(typeof invertedIndex.searchIndex).toBe('function');
   });
-
-  it('should check that the class has a searchIndex method', () => {
-    expect(typeof invertedIndex.flattenSearch).toBe('function');
-  });
 });
 
-describe('InvertedIndex : Read file data ', () => {
-  it('should read and return the contents of a file via callback',
-   (read) => {
-     const file = new File('./files/test.json');
-     Index.readFile(file, (e) => {
-       expect(JSON.parse(e.target.result)).toEqual(test);
-       read();
-     });
-   });
-});
 
 describe('InvertedIndex : Tokenize words', () => {
   it('should return tokenized words for string in variable words', () => {
