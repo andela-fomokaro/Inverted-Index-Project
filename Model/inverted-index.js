@@ -1,6 +1,6 @@
-// const fileApi = require('file-api');
+const fileApi = require('file-api');
 
-// const FileReader = fileApi.FileReader;
+const FileReader = fileApi.FileReader;
 /**
  * Implementation of the inverted index data structure.
  * @author Omokaro Faith <faith.omokaro@andela.com>
@@ -113,11 +113,11 @@ class InvertedIndex {
   }
   /**
    * @method flattenSearch
-   * @param {void} argument of terms
+   * @param {void} args of terms
    * @return {Array} array of terms
    */
-  flattenSearch(argument) {
-    return argument.reduce((acc, val) =>
+  flattenSearch(...args) {
+    return args.reduce((acc, val) =>
       acc.concat(Array.isArray(val) ?
       this.flattenSearch(val) : val.split(' ')), []);
   }
