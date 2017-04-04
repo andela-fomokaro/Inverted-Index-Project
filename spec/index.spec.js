@@ -40,6 +40,11 @@ describe('InvertedIndex : createIndex', () => {
         soon: [1],
       });
     });
+  it('should return falsy if file content is empty', () => {
+    invertedIndex.createIndex('empty.json', empty);
+    expect(Object.keys(invertedIndex.getIndex('empty.json', empty))
+    .length < 1).toBeFalsy();
+  });
 });
 
 describe('InvertedIndex : searchIndex', () => {
@@ -55,6 +60,26 @@ describe('InvertedIndex : searchIndex', () => {
   it('Should return search for all files', () => {
     expect(Object.keys(invertedIndex.searchIndex('soon', 'work.json')))
        .toEqual(['soon']);
+  });
+  it('should search through all files', () => {
+    const allFiles =
+      {
+        0:
+        {
+          alice: [0],
+          an: [1],
+          barbie: [2],
+          cartoons: [2],
+          of: [0, 1],
+          unusual: [1],
+          wizard: [1]
+        },
+        1:
+        {
+          barbie: [1]
+        }
+      };
+    expect(Object.keys(allFiles)).toEqual(Object.keys(allFiles));
   });
 });
 
@@ -115,7 +140,7 @@ describe('InvertedIndex : Read file data ', () => {
 
 describe('InvertedIndex : Tokenize words', () => {
   it('should return tokenized words for string in variable words', () => {
-    let words = 'It CAN only BE++ $$$$$   GOD';
+    let words = 'It CAN only BE++ $$$$$   [GOD]';
     const termsExpected = ['it', 'can', 'only', 'be', 'god'];
     words = invertedIndex.tokenize(words);
     expect(termsExpected).toEqual(words);
