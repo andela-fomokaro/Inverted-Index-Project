@@ -1,6 +1,6 @@
-const fileApi = require('file-api');
+// const fileApi = require('file-api');
 
-const FileReader = fileApi.FileReader;
+// const FileReader = fileApi.FileReader;
 /**
  * Implementation of the inverted index data structure.
  * @author Omokaro Faith <faith.omokaro@andela.com>
@@ -27,8 +27,6 @@ class InvertedIndex {
     this.token = words.toLowerCase()
     .replace(/[^\w\s]|_/g, '')
     .split(/\s+/);
-    // .trim()
-    // .match(/\w+/g);
     return this.token;
   }
   /**
@@ -102,7 +100,7 @@ class InvertedIndex {
 /**
      * It returns the index of the words
      * @method getIndex
-     * @param {Object} fileName
+     * @param {String} fileName
      *
      * @return {object} gets the index
      */
