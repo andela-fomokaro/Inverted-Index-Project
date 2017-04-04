@@ -9,27 +9,16 @@ const File = fileAPI.File;
 
 
 const invertedIndex = new Index();
-
-const workBook = [{
-  title: 'Checkpoint one',
-  text: 'Testing getIndex function',
-},
-
-{
-  title: 'Checkpoint Two',
-  text: 'Coming soon',
-},
-];
+invertedIndex.createIndex('work.json', work);
 
 describe('InvertedIndex : createIndex', () => {
-  invertedIndex.createIndex('work.json', workBook);
   it('should verify that index has been created', () => {
-    expect(Object.keys(invertedIndex.getIndex('work.json', workBook)).length)
+    expect(Object.keys(invertedIndex.getIndex('work.json', work)).length)
       .toBeGreaterThan(0);
   });
   it('Should return an object that is an accurate index of the file uploaded',
     () => {
-      expect(invertedIndex.getIndex('work.json', workBook)).toEqual({
+      expect(invertedIndex.getIndex('work.json', work)).toEqual({
         checkpoint: [0, 1],
         one: [0],
         testing: [0],
@@ -62,24 +51,16 @@ describe('InvertedIndex : searchIndex', () => {
        .toEqual(['soon']);
   });
   it('should search through all files', () => {
-    const allFiles =
-      {
-        0:
-        {
-          alice: [0],
-          an: [1],
-          barbie: [2],
-          cartoons: [2],
-          of: [0, 1],
-          unusual: [1],
-          wizard: [1]
-        },
-        1:
-        {
-          barbie: [1]
-        }
-      };
-    expect(Object.keys(allFiles)).toEqual(Object.keys(allFiles));
+    invertedIndex.createIndex('test.json', test);
+    expect(invertedIndex.searchIndex('soon movie', 'All files')).toEqual({
+      'work.json': {
+        soon: [1]
+      },
+      'empty.json': {},
+      'test.json': {
+        movie: [0, 1]
+      }
+    });
   });
 });
 
@@ -87,10 +68,10 @@ describe('InvertedIndex : searchIndex', () => {
 describe('InvertedIndex : validateFile', () => {
   it('should return truthy if book data is valid',
     () => {
-      expect(Index.validateFile(workBook).status).toBeTruthy();
+      expect(Index.validateFile(work).status).toBeTruthy();
     });
   it('should return validate.msg if file uploaded is valid', () => {
-    expect(Index.validateFile(workBook).msg).toBe('This is a valid File');
+    expect(Index.validateFile(work).msg).toBe('This is a valid File');
   });
   it('should return falsy if book is not an array of object literals', () => {
     expect(Index.validateFile('theDojo').status).toBeFalsy();

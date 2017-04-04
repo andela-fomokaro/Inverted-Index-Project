@@ -107,10 +107,6 @@ class InvertedIndex {
      * @return {object} gets the index
      */
   getIndex(fileName) {
-    if (Object.keys(fileName).length < 1) {
-      return this.index;
-    }
-
     return this.index[fileName];
   }
 /**
