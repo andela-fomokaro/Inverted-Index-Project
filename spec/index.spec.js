@@ -12,10 +12,6 @@ const invertedIndex = new InvertedIndex();
 invertedIndex.createIndex('work.json', work);
 describe('InvertedIndex : createIndex', () => {
   invertedIndex.createIndex('work.json', work);
-  it('should verify that index has been created', () => {
-    expect(Object.keys(invertedIndex.getIndex('work.json', work)).length)
-      .toBeGreaterThan(0);
-  });
   it('Should return an object that is an accurate index of the file uploaded',
     () => {
       expect(invertedIndex.getIndex('work.json', work)).toEqual({
