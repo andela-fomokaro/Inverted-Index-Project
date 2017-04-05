@@ -7,11 +7,9 @@ const fileAPI = require('file-api');
 
 const File = fileAPI.File;
 
-
 const invertedIndex = new InvertedIndex();
 invertedIndex.createIndex('work.json', work);
 describe('InvertedIndex : createIndex', () => {
-  invertedIndex.createIndex('work.json', work);
   it('Should return an object that is an accurate index of the file uploaded',
     () => {
       expect(invertedIndex.getIndex('work.json', work)).toEqual({
