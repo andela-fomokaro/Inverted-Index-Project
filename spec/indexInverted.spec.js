@@ -3,9 +3,9 @@ const test = require('../files/test.json');
 const work = require('../files/work.json');
 const empty = require('../files/empty.json');
 
-const fileAPI = require('file-api');
+// const fileAPI = require('file-api');
 
-const File = fileAPI.File;
+// const File = fileAPI.File;
 
 const invertedIndex = new InvertedIndex();
 invertedIndex.createIndex('work.json', work);
@@ -104,20 +104,9 @@ describe('InvertedIndex : check type of InvertedIndex methods', () => {
   });
 });
 
-describe('InvertedIndex : Read file data ', () => {
-  it('should read and return the contents of a file via callback',
-   (read) => {
-     const file = new File('./files/test.json');
-     InvertedIndex.readFile(file, (e) => {
-       expect(JSON.parse(e.target.result)).toEqual(test);
-       read();
-     });
-   });
-});
-
 describe('InvertedIndex : Tokenize words', () => {
   it('should return tokenized words for string in variable words', () => {
-    let words = 'It CAN only BE++ $$$$$   [GOD]';
+    let words = 'It CAN only BE++ $$$$$ [GOD]';
     const termsExpected = ['it', 'can', 'only', 'be', 'god'];
     words = invertedIndex.tokenize(words);
     expect(termsExpected).toEqual(words);

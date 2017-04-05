@@ -1,6 +1,3 @@
-const fileApi = require('file-api');
-
-const FileReader = fileApi.FileReader;
 /**
  * Implementation of the inverted index data structure.
  * @author Omokaro Faith <faith.omokaro@andela.com>
@@ -12,7 +9,6 @@ class InvertedIndex {
    */
   constructor() {
     this.index = {};
-    this.temp_search = [];
     this.searchResult = {};
     this.allIndex = {};
     this.token = '';
