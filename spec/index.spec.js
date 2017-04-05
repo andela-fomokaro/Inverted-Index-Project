@@ -9,7 +9,7 @@ const File = fileAPI.File;
 
 
 const invertedIndex = new InvertedIndex();
-
+invertedIndex.createIndex('work.json', work);
 describe('InvertedIndex : createIndex', () => {
   invertedIndex.createIndex('work.json', work);
   it('should verify that index has been created', () => {
@@ -31,7 +31,7 @@ describe('InvertedIndex : createIndex', () => {
     });
   it('should return falsy if file content is empty', () => {
     invertedIndex.createIndex('empty.json', empty);
-    expect(Object.keys(invertedIndex.getIndex('empty.json', empty))
+    expect(invertedIndex.getIndex('empty.json', empty)
     .length < 1).toBeFalsy();
   });
 });
