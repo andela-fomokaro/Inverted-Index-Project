@@ -103,6 +103,16 @@ describe('InvertedIndex : check type of InvertedIndex methods', () => {
     expect(typeof invertedIndex.searchIndex).toBe('function');
   });
 });
+describe('InvertedIndex : Read file data ', () => {
+  it('should read and return the contents of a file via callback',
+   (read) => {
+     const file = new File('./files/test.json');
+     InvertedIndex.readFile(file, (e) => {
+       expect(JSON.parse(e.target.result)).toEqual(test);
+       read();
+     });
+   });
+});
 
 describe('InvertedIndex : Tokenize words', () => {
   it('should return tokenized words for string in variable words', () => {
